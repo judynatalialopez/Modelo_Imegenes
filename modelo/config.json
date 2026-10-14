@@ -1,0 +1,21 @@
+{
+  "img_size": 128,
+  "class_names": [
+    "daisy",
+    "dandelion",
+    "roses",
+    "sunflowers",
+    "tulips"
+  ],
+  "nombres_es": [
+    "Margarita",
+    "Diente de león",
+    "Rosa",
+    "Girasol",
+    "Tulipán"
+  ],
+  "augmentation": false,
+  "batch_size": 32,
+  "seed": 42,
+  "epochs_entrenadas": 33
+}
