@@ -1,0 +1,13 @@
+archivo,real,prediccion,confianza,correcta
+3102535578_ec8c12a7b6_m.jpg,Rosa,Rosa,0.6528,True
+5674127693_1ddbd81097.jpg,Tulipán,Tulipán,0.9995,True
+5446666484_365f3be83a_n.jpg,Diente de león,Diente de león,0.5624,True
+5738580862_e128192f75.jpg,Girasol,Girasol,0.9756,True
+11746276_de3dec8201.jpg,Tulipán,Tulipán,1.0,True
+16510864164_3afa8ac37f.jpg,Diente de león,Diente de león,0.9993,True
+14925397351_c7f209d804_n.jpg,Girasol,Girasol,0.9931,True
+142235914_5419ff8a4a.jpg,Tulipán,Girasol,0.5669,False
+18001393975_2a6acaabd8.jpg,Diente de león,Diente de león,0.9505,True
+7367491658_9eb4dc2384_m.jpg,Diente de león,Diente de león,0.9997,True
+7376473742_532364cee5_n.jpg,Rosa,Rosa,0.6646,True
+23645265812_24352ff6bf.jpg,Girasol,Girasol,0.978,True

@@ -16,7 +16,7 @@ from utils import CLASS_NAMES, NOMBRES_ES
 BASE_DIR = Path(__file__).resolve().parent
 METRICS_PATH = BASE_DIR / "reports" / "metrics.json"
 CONFIG_PATH = BASE_DIR / "modelo" / "config.json"
-UMBRAL_CONFIANZA = 0.60
+UMBRAL_POR_DEFECTO = 0.60
 
 st.set_page_config(page_title="Clasificador de flores", page_icon="🌸", layout="centered")
 
@@ -69,6 +69,12 @@ with st.sidebar:
         c2.metric("F1 macro", f"{metrics['f1_macro']:.3f}")
         c1.metric("Precisión macro", f"{metrics['precision_macro']:.3f}")
         c2.metric("Recall macro", f"{metrics['recall_macro']:.3f}")
+    st.subheader("Ajustes")
+    umbral = st.slider(
+        "Umbral de confianza", 0.30, 0.95, UMBRAL_POR_DEFECTO, 0.05,
+        help="Si la confianza del modelo es menor a este valor, la app dirá que la imagen "
+             "no parece ser una de las 5 flores. Súbelo para ser más estricto.",
+    )
 
 # ----------------------------------------------------------------------------
 # Cuerpo principal
@@ -96,14 +102,18 @@ else:
             st.error(str(e))
             st.stop()
 
-        st.subheader(f"🌼 {r['nombre']} — confianza {r['confianza']:.1%}")
-        st.progress(min(max(r["confianza"], 0.0), 1.0))
-
-        if r["confianza"] < UMBRAL_CONFIANZA:
-            st.warning(
-                "Confianza baja. Puede que la imagen no sea una de las 5 flores que conoce el modelo "
-                "o que la foto esté poco clara. El modelo siempre elige una de sus 5 clases."
+        if r["confianza"] < umbral:
+            st.error(
+                "🚫 **No parece ser una de las 5 flores** que conoce el modelo "
+                "(margarita, diente de león, rosa, girasol o tulipán)."
             )
+            st.caption(
+                f"Lo más parecido sería «{r['nombre']}», pero con solo {r['confianza']:.1%} de confianza "
+                "la predicción no es fiable. También puede ser una foto de flor poco clara."
+            )
+        else:
+            st.subheader(f"🌼 {r['nombre']} — confianza {r['confianza']:.1%}")
+            st.progress(min(max(r["confianza"], 0.0), 1.0))
 
         df = pd.DataFrame({"clase": list(r["probabilidades"]), "probabilidad": list(r["probabilidades"].values())})
         chart = (

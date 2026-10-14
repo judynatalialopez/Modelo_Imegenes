@@ -1,0 +1,3 @@
+experimento,épocas,train_acc,val_loss,val_accuracy,brecha_train_val
+sin_aumento_de_datos,33,0.9023,0.5895,0.82,0.0823
+con_aumento_de_datos,26,0.7898,0.6447,0.7618,0.028
