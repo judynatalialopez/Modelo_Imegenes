@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+data/flower_photos/
+data/*.tgz
+modelo/checkpoint.keras
+.ipynb_checkpoints/
